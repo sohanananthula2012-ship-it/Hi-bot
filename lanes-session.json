@@ -1,0 +1,16 @@
+{
+  "template": {
+    "subject": "helloo",
+    "body": "helloo {{name}},\n\nYou just clicked the Hi button. This message was routed through the Lanes Wizard Engine.\n\n— Hi Bot",
+    "isHtml": false
+  },
+  "isHtml": false,
+  "executedAt": "2026-06-29T16:19:14.319Z",
+  "recipients": [
+    {
+      "email": "sohanananthula2012@gmail.com",
+      "name": "friend"
+    }
+  ],
+  "failedRecipients": []
+}

@@ -1,0 +1,13 @@
+{
+  "name": "hi-email-app",
+  "version": "1.0.0",
+  "description": "Simple page with Hi button that sends email via lanes-engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "lanes-engine": "^2.1.0"
+  }
+}

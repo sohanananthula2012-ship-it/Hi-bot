@@ -1,0 +1,29 @@
+{
+  "campaignSubject": "helloo",
+  "executedAt": "2026-06-29T16:19:14.319Z",
+  "totalRecipients": 1,
+  "deliveredCount": 1,
+  "failedCount": 0,
+  "isHtml": false,
+  "lanes": [
+    {
+      "laneId": 1,
+      "assignedCount": 1,
+      "sentCount": 1,
+      "errorCount": 0
+    },
+    {
+      "laneId": 2,
+      "assignedCount": 0,
+      "sentCount": 0,
+      "errorCount": 0
+    }
+  ],
+  "details": [
+    {
+      "laneId": 1,
+      "email": "sohanananthula2012@gmail.com",
+      "ok": true
+    }
+  ]
+}
