@@ -39,7 +39,7 @@ ${email},friend
     return res.status(500).json({ ok: false, error: 'write failed: ' + e.message });
   }
 
-  const result = await runLanes(['send', '--no-banner'], 90000);
+  const result = await runLanes(['send', '--no-banner'], 55000);
   if (!result.ok) {
     return res.status(500).json({ ok: false, error: result.output || 'lanes-engine failed' });
   }
