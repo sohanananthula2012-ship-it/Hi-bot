@@ -2,7 +2,7 @@
 
 > The smallest possible production workflow built with `lanes-engine`.
 
-Hi Bot is a tiny example application that demonstrates how to build real-world automations using `lanes-engine`.
+Hi Bot is a tiny example application that demonstrates how to build real-world automations with `lanes-engine`.
 
 A user action enters the Wizard runtime, is routed through a lane, and performs a real action: sending an email.
 
@@ -16,14 +16,14 @@ The answer is:
 
 ---
 
-## ✨ Features
+# ✨ Features
 
 - ⚡ Built on `lanes-engine`
 - 📨 Sends real emails
 - 🛣️ Demonstrates lane routing
 - 🧙 Uses the Wizard runtime
-- 🧩 Extremely small and easy to understand
-- 🚀 Perfect starting point for your own bots and automations
+- 🧩 Minimal and easy to understand
+- 🚀 Great starting point for your own bots and automations
 
 ---
 
@@ -49,9 +49,7 @@ User Action
 
 # Example
 
-A user triggers the workflow.
-
-The bot sends:
+The user triggers the workflow and receives:
 
 ```text
 Subject: Hi from Hi Bot 👋
@@ -65,7 +63,7 @@ This email was sent by Hi Bot running on lanes-engine.
 
 # Screenshot
 
-![Hi Bot Email](example.png)
+![Email Example](example.png)
 
 A real email delivered by the example workflow.
 
@@ -81,7 +79,7 @@ hi-bot/
 │   └── mailer.js
 ├── assets/
 │   └── email-example.png
-├── .env.example
+├── config.json
 ├── package.json
 └── README.md
 ```
@@ -93,8 +91,8 @@ hi-bot/
 Clone the repository:
 
 ```bash
-git clone https://github.com/sohanananthula2012-ship-it/hi-bot.git
-cd hi-bot
+git clone https://github.com/sohanananthula2012-ship-it/Hi-bot.git
+cd Hi-bot
 npm install
 ```
 
@@ -102,19 +100,19 @@ npm install
 
 # Requirements
 
-Hi Bot uses **ORCHIDS Email** to send messages.
+Hi Bot uses **ORCHIDS Email**.
 
-Before running the application, you'll need an **ORCHIDS Email Key**.
+Before running the application, you'll need an **ORX Project Key**.
 
-If you don't have one:
+If you don't have one yet:
 
-1. Go to:
+1. Visit:
 
 https://bud.app
 
 2. Create a project.
 
-3. Ask it:
+3. Ask:
 
 ```text
 Generate an ORCHIDS Email Key
@@ -126,31 +124,42 @@ Generate an ORCHIDS Email Key
 
 # Configuration
 
-Create a `.env` file:
+Create a file named:
 
-```env
-ORCHIDS_KEY=your_key_here
-FROM_EMAIL=hello@example.com
-TO_EMAIL=you@example.com
+```text
+config.json
+```
+
+Add the following:
+
+```json
+{
+  "orx_project_key": "your_orchids_project_key_here"
+}
 ```
 
 ---
 
 # First Run
 
-If you start the application without an ORCHIDS key, you'll see:
+If `config.json` is missing or the key is not present, the application will stop and display:
 
 ```text
-No ORCHIDS_KEY found.
+No ORX Project Key found.
 
-Add your ORCHIDS Key to continue.
+Create a config.json file:
 
-Don't have one?
+{
+  "orx_project_key": "YOUR_KEY"
+}
 
-Go to https://bud.app
-Create a project and ask:
+Don't have a key?
 
-"Generate an ORCHIDS Email Key"
+1. Go to https://bud.app
+2. Create a project
+3. Ask:
+
+   "Generate an ORCHIDS Email Key"
 ```
 
 ---
@@ -184,8 +193,6 @@ Workflow completed in 186ms.
 
 # Understanding the Flow
 
-The code intentionally stays small:
-
 ```text
 Button Click
       ↓
@@ -198,24 +205,24 @@ Email sent
 Workflow completed
 ```
 
-This same pattern can power much larger systems.
+This same architecture can power much larger systems.
 
 ---
 
 # Build From Here
 
-Hi Bot is intentionally tiny, but the same architecture can power:
+Hi Bot is intentionally tiny, but the same pattern can power:
 
 - Contact form bots
 - Customer onboarding flows
 - Notification systems
 - Telegram bots
 - Discord automations
-- AI agents
 - Scheduled jobs
 - Approval pipelines
-- Multi-step workflows
+- AI agents
 - Production email systems
+- Multi-step workflows
 
 ---
 
@@ -259,7 +266,7 @@ Features include:
 
 ---
 
-# Installation
+# Install lanes-engine
 
 ## npm
 
@@ -277,7 +284,7 @@ pip install lanes-engine
 
 # Learn More
 
-- GitHub: https://github.com/sohanananthula2012-ship-it/lanes-engine
+- 
 - npm: https://www.npmjs.com/package/lanes-engine
 - PyPI: https://pypi.org/project/lanes-engine/
 
@@ -294,6 +301,12 @@ If you build something cool with `lanes-engine`, we'd love to see it.
 # License
 
 MIT © Sohan Ananthula
+
+---
+
+> Built as an educational example for the `lanes-engine` ecosystem.
+>
+> **Small project. Real workflow. Zero fluff.**
 
 ---
 
