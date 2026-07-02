@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Research</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .card {
+    background: white; padding: 40px; border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 480px; width: 100%;
+  }
+  h1 { color: #333; margin-bottom: 8px; font-size: 28px; }
+  p.sub { color: #888; margin-bottom: 24px; font-size: 14px; line-height: 1.5; }
+  label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; font-weight: 500; }
+  select, input[type=email], input[type=text] {
+    width: 100%; padding: 12px 14px; border: 2px solid #e0e0e0;
+    border-radius: 8px; font-size: 15px; margin-bottom: 16px;
+    background: white; font-family: inherit;
+  }
+  select:focus, input:focus { outline: none; border-color: #667eea; }
+  .btn {
+    width: 100%; padding: 14px; color: white; border: none;
+    border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  #status {
+    margin-top: 16px; padding: 12px 14px; border-radius: 8px;
+    font-size: 14px; text-align: center; min-height: 20px;
+  }
+  #status.busy { background: #fff3cd; color: #856404; }
+  #status.ok   { background: #d4edda; color: #155724; }
+  #status.err  { background: #f8d7da; color: #721c24; }
+  #status.idle { color: #888; }
+  .back { display: inline-block; margin-top: 16px; color: #667eea; font-size: 13px; text-decoration: none; }
+  .back:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Research</h1>
+    <p class="sub">Enter a topic and your email. elora-voss will research, write an article, and send it to you.</p>
+
+    <label for="topic">Topic</label>
+    <input type="text" id="topic" placeholder="e.g. quantum computing breakthroughs 2025" />
+
+    <label for="domain">Quick pick email</label>
+    <select id="domain">
+      <option value="">-- choose a domain --</option>
+      <option value="gmail.com">gmail.com</option>
+      <option value="yahoo.com">yahoo.com</option>
+      <option value="outlook.com">outlook.com</option>
+      <option value="hotmail.com">hotmail.com</option>
+      <option value="protonmail.com">protonmail.com</option>
+      <option value="icloud.com">icloud.com</option>
+    </select>
+
+    <label for="email">Your email</label>
+    <input type="email" id="email" placeholder="you@example.com" />
+
+    <button class="btn" id="sendBtn">Research & Send</button>
+    <div id="status" class="idle"></div>
+    <a href="/" class="back">Back to Hi</a>
+  </div>
+
+<script>
+  const topicInp  = document.getElementById('topic');
+  const domainSel = document.getElementById('domain');
+  const emailInp  = document.getElementById('email');
+  const btn       = document.getElementById('sendBtn');
+  const status    = document.getElementById('status');
+
+  function setStatus(kind, msg) {
+    status.className = kind;
+    status.textContent = msg;
+  }
+
+  domainSel.addEventListener('change', () => {
+    if (domainSel.value) {
+      emailInp.value = `user@${domainSel.value}`;
+      emailInp.focus();
+    }
+  });
+
+  btn.addEventListener('click', async () => {
+    const topic = topicInp.value.trim();
+    const email = emailInp.value.trim();
+
+    if (!topic) {
+      setStatus('err', 'Enter a topic first.');
+      return;
+    }
+    if (!email || !email.includes('@')) {
+      setStatus('err', 'Enter a valid email.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Working...';
+    setStatus('busy', 'Researching "' + topic + '"... this may take 30-60 seconds');
+
+    try {
+      const r = await fetch('/research', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic, email })
+      });
+      const data = await r.json();
+      if (data.ok) {
+        setStatus('ok', 'Article sent to ' + email + '!');
+      } else {
+        setStatus('err', (data.error || 'Failed'));
+      }
+    } catch (e) {
+      setStatus('err', 'Network error: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Research & Send';
+    }
+  });
+</script>
+</body>
+</html>
