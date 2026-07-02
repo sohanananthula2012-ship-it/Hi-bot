@@ -43,5 +43,5 @@ ${email},friend
   if (!result.ok) {
     return res.status(500).json({ ok: false, error: result.output || 'lanes-engine failed' });
   }
-  return res.status(200).json({ ok: true, message: 'helloo sent to ' + email });
+  return res.status(200).json({ ok: true, message: 'helloo sent to ' + email }, null, 2);
 };

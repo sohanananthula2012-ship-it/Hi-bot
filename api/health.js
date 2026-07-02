@@ -7,5 +7,5 @@ module.exports = function handler(req, res) {
     orchidsKeyPresent: !!key,
     source: source,
     message: key ? 'ready' : 'orchids_key missing (set ORCHIDS_KEY env var or config.json)'
-  });
+  }, null, 2);
 };
