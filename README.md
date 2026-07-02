@@ -65,7 +65,7 @@ This email was sent by Hi Bot running on lanes-engine.
 
 # Screenshot
 
-![Hi Bot Email](./assets/email-example.png)
+![Hi Bot Email](example.png)
 
 A real email delivered by the example workflow.
 
